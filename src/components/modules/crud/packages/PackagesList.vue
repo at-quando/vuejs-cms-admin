@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <list :attrTable="['a','b','c']" :titleList="'package'"  :urlList="'package'"/>
+    <list :attrTable="['a','b','c']" :titleList="'package'"  :urlList="'/package'"/>
   </div>
 </template>
 <script>

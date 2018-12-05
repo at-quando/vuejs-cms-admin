@@ -6,7 +6,7 @@ Vue.filter('capitalize', function (value) {
 })
 
 Vue.filter('takeImage', function (value) {
-  return process.env.SERVER_IP + value
+  return process.env.SERVER_IP + '/api/pictures/' + value
 })
 
 Vue.filter('smallGoogleImage', function (value) {

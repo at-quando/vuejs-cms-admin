@@ -1,7 +1,6 @@
 <template>
     <transition name="el-zoom-in-top">
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>Blank Page<small>It's all start from here <i class="ti-heart"></i><i class="ti-export"></i><i class="ti-printer"></i></small></h1>
                 <ol class="breadcrumb">
@@ -12,7 +11,6 @@
                     <li class="active">Login Page</li>
                 </ol>
             </section>
-            <!-- Main content -->
             <section class="content">
                 <el-dialog title="Login" :visible.sync="dialogVisible" size="tiny" visible="false" :before-close="handleClose">
                     <div class="account-box">
@@ -54,7 +52,6 @@
                     </div>
                 </el-dialog>
             </section>
-            <!-- /.content -->
         </div>
     </transition>
 </template>

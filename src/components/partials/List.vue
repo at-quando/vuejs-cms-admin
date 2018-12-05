@@ -1,13 +1,10 @@
 <template>
   <div>
-    <section class="content-header">
-      <router-link :to="{name: `${urlList}New` }"><button type="button" style="float: right" class="el-button el-button--primary"><span>New {{titleList}}</span></button></router-link>
-      <ol class="breadcrumb">
-        <li><router-link to="/"> <i class="ti-home"></i></router-link></li>
-        <li><a href="#">Table</a></li>
-        <li class="active">Simple Table</li>
-      </ol>
-    </section>
+    <bread-crumb>
+      <template slot="button">
+        <router-link :to="{ path: 'new'}" append><button type="button" style="float: right" class="el-button el-button--primary"><span>New {{titleList}}</span></button></router-link>
+      </template>
+    </bread-crumb>
     <section class="content">
       <div class="box">
         <div class="box-header with-border">
@@ -62,7 +59,7 @@ export default {
   },
   methods: {
     handleEdit (row) {
-      this.$router.push({name: this.urlList, params: { id: row._id }})
+      this.$router.push({path: `${this.$route.path}/${row._id}`})
     },
     handleDelete (index, row) {
       console.log(index, row)

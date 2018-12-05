@@ -8,7 +8,7 @@
     <!-- Content Wrapper. Contains page content -->
     <transition name="el-zoom-in-top">
       <div class="content-wrapper">
-        <router-view></router-view>
+        <router-view :key="$route.path"></router-view>
       </div>
     </transition>
     <!-- /.content-wrapper -->

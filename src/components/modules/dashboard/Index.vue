@@ -20,12 +20,12 @@
                                     <div class="wrap-no-pad text-white">
                                         <bars :data="[1, 2, 5, 9, 5, 10, 3, 5, 2, 5, 1, 8, 2, 9, 0]" :gradient="['#ffffff', '#ffffff']"></bars>
                                         <h1 class="text-white"><strong><animate-number
-      from="1" 
-      to="45" 
-      duration="9000" 
-      easing="easeOutQuad"
-      :formatter="formatter"
-    ></animate-number></strong></h1> <span>Active Users</span>
+                                            from="1" 
+                                            to="45" 
+                                            duration="9000" 
+                                            easing="easeOutQuad"
+                                            :formatter="formatter"
+                                            ></animate-number></strong></h1> <span>Active Users</span>
                                         <p>65%</p>
                                         <br> </div>
                                 </div>

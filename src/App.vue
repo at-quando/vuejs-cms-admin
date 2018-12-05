@@ -5,8 +5,15 @@
 </template>
 
 <script>
+import store from './store'
+
 export default {
-  name: 'App'
+  name: 'App',
+  created () {
+    this.$http.get('api/users/me').then(res => {
+      store.commit('SET_USER', res.body)
+    })
+  }
 }
 </script>
 <style lang="scss">

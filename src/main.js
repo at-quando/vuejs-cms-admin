@@ -11,6 +11,8 @@ import VueGmaps from 'vue-gmaps'
 import VueLayers from 'vuelayers'
 import VCharts from 'v-charts'
 import filter from './helper/filter'
+import GlobalComponents from './GlobalComponent.js'
+var jwtDecode = require('jwt-decode')
 // Resource logic
 Vue.use(Resource)
 Vue.http.options.emulateJSON = true
@@ -27,6 +29,7 @@ Vue.use(VueGmaps, {
 })
 Vue.use(VueLayers)
 Vue.use(VCharts)
+Vue.use(GlobalComponents)
 
 // Import top level component
 import App from './App.vue'
@@ -65,17 +68,21 @@ router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth === false) {
     if (store.state.token) {
       Vue.http.get('api/checkLogin').then(res => {
-        window.localStorage.removeItem('ACCESS_TOKEN')
         next({path: '/'})
       })
         .catch(function (e) {
+          window.localStorage.removeItem('ACCESS_TOKEN')
           next()
         })
     } else {
+      window.localStorage.removeItem('ACCESS_TOKEN')
       next()
     }
   } else {
     if (store.state.token) {
+      var decoded = jwtDecode(store.state.token)
+      store.commit('SET_ROLE', decoded.role)
+      store.commit('SET_UID', decoded.id)
       Vue.http.get('api/checkLogin').then(res => {
         next()
       })

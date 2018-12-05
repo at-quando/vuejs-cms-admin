@@ -24,7 +24,6 @@ import FormTimePicker from './components/modules/form/FormTimePicker.vue'
 import Mail from './components/modules/Mail.vue'
 import DashboardSecond from './components/modules/dashboard/DashboardSecond.vue'
 import Chat from './components/modules/Chat.vue'
-import Calendar from './components/modules/Calendar.vue'
 import ToDo from './components/modules/ToDo.vue'
 import BlogList from './components/modules/BlogList.vue'
 import BlogDetails from './components/modules/BlogDetails.vue'
@@ -33,7 +32,7 @@ import ShopHome from './components/modules/ShopHome.vue'
 import ShopItem from './components/modules/ShopItem.vue'
 import BlankPage from './components/modules/common-page/BlankPage.vue'
 import InvoicePage from './components/modules/common-page/Invoice.vue'
-import Profile from './components/modules/common-page/Profile.vue'
+
 import Login from './components/Login.vue'
 import NotFoundSecond from './components/modules/dashboard/500.vue'
 import SimpleTable from './components/modules/tables/SimpleTable.vue'
@@ -45,25 +44,27 @@ import Gmap from './components/modules/Gmap.vue'
 import ChartMap from './components/modules/chart/ChartMap.vue'
 import OpenLayer from './components/modules/OpenLayer.vue'
 
+import EditProfile from './components/modules/users/EditProfile.vue'
+import Profile from './components/modules/users/Profile.vue'
+
 import ContractList from './components/modules/contracts/ContractList.vue'
 import ContractDetails from './components/modules/contracts/ContractDetails.vue'
 import ContractNew from './components/modules/contracts/ContractNew.vue'
 
-import ClothesList from './components/modules/crud/clothes/ClothesList.vue'
-import ClothesDetails from './components/modules/crud/clothes/ClothesDetails.vue'
-import ClothesNew from './components/modules/crud/clothes/ClothesNew.vue'
+import ProductsList from './components/modules/crud/products/ProductsList.vue'
+import ProductsDetails from './components/modules/crud/products/ProductsDetails.vue'
+import ProductsNew from './components/modules/crud/products/ProductsNew.vue'
 
-import DevicesList from './components/modules/crud/devices/DevicesList.vue'
-import DevicesDetails from './components/modules/crud/devices/DevicesDetails.vue'
-import DevicesNew from './components/modules/crud/devices/DevicesNew.vue'
-
-import EmployeesList from './components/modules/crud/employees/EmployeeList.vue'
-import EmployeesDetails from './components/modules/crud/employees/EmployeeDetails.vue'
-import EmployeesNew from './components/modules/crud/employees/EmployeeNew.vue'
+import EmployeesList from './components/modules/human-resource/employees/EmployeeList.vue'
+import EmployeesDetails from './components/modules/human-resource/employees/EmployeeDetails.vue'
+import EmployeesNew from './components/modules/human-resource/employees/EmployeeNew.vue'
 
 import PackagesList from './components/modules/crud/packages/PackagesList.vue'
 import PackagesDetails from './components/modules/crud/packages/PackagesDetails.vue'
 import PackagesNew from './components/modules/crud/packages/PackagesNew.vue'
+
+import Department from './components/modules/human-resource/department/Department.vue'
+import DepartmentDetails from './components/modules/human-resource/department/DepartmentDetails.vue'
 
 // Routes
 const routes = [
@@ -112,17 +113,17 @@ const routes = [
         name: 'contract',
         component: ContractDetails
       }, {
-        path: '/clothes',
-        name: 'clothesList',
-        component: ClothesList
+        path: '/products/:product',
+        name: 'ProductsList',
+        component: ProductsList
       }, {
-        path: '/clothes/new',
-        name: 'clothesNew',
-        component: ClothesNew
+        path: '/products/:product/new',
+        name: 'productNew',
+        component: ProductsNew
       }, {
-        path: '/clothes/:id',
-        name: 'clothes',
-        component: ClothesDetails
+        path: '/products/:product/:id',
+        name: 'Products',
+        component: ProductsDetails
       }, {
         path: '/packages',
         name: 'packageList',
@@ -136,37 +137,29 @@ const routes = [
         name: 'package',
         component: PackagesDetails
       }, {
-        path: '/devices',
-        name: 'DevicesList',
-        component: DevicesList
-      }, {
-        path: '/devices/new',
-        name: 'devicesNew',
-        component: DevicesNew
-      }, {
-        path: '/devices/:id',
-        name: 'devices',
-        component: DevicesDetails
-      }, {
         path: '/employees',
         name: 'EmployeesList',
         component: EmployeesList
+      }, {
+        path: '/employees/new',
+        name: 'EmployeesNew',
+        component: EmployeesNew
       }, {
         path: '/employees/:id',
         name: 'Employees',
         component: EmployeesDetails
       }, {
-        path: '/employees/new',
-        name: 'EmployeestNew',
-        component: EmployeesNew
-      }, {
         path: '/chat',
         name: 'chat',
         component: Chat
       }, {
-        path: '/calendar',
-        name: 'calendar',
-        component: Calendar
+        path: '/department',
+        name: 'department',
+        component: Department
+      }, {
+        path: '/department/:id',
+        name: 'department-details',
+        component: DepartmentDetails
       }, {
         path: '/todo',
         name: 'todo',
@@ -211,6 +204,10 @@ const routes = [
         path: '/profile',
         name: 'profile',
         component: Profile
+      }, {
+        path: '/profile/edit',
+        name: 'EditProfile',
+        component: EditProfile
       }, {
         path: '/404',
         name: '404-eror',
