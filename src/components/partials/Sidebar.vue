@@ -1,314 +1,150 @@
 <template>
-    <aside class="main-sidebar">
-        <div>
-            <section class="sidebar">
-                <div class="user-panel">
-                    <div class="image"> <img src="/static/img/avatar2.png" class="img-circle" alt="User Image"> </div>
-                    <div class="info">
-                        <p>Good Job, Matirasa</p>
-                        <p><small>You haven,t miss any task this week!</small></p>
-                        <div> <a href="#"><i class="ti-panel"></i><small>Settings</small></a> <a href="#"><i class="ti-user"></i><small>Profile</small></a> <a href="#"><i class="ti-power-off"></i><small>Logout</small></a> </div>
-                    </div> <img class="bg-user" src="/static/img/avatar-bg.png" alt="User Image"> </div>
-                <ul class="sidebar-menu">
-                    <li class="header">Basic Tools</li>
-                    <li class="treeview">
-                        <a href="#"> <i class="ti-desktop"></i> <span>Dashboard</span> <span class="pull-right-container">
+  <aside class="main-sidebar">
+    <div>
+      <section class="sidebar">
+        <div class="user-panel" v-if="me">
+          <div class="image"> <img :src="me.avatar | takeImage" class="img-circle" alt="User Image"> </div>
+          <div class="info">
+            <p>Good Job,<br> {{me.name}}</p>
+            <p><small>You haven,t miss any task this week!</small></p>
+            <div>
+              <a href="#"><i class="ti-panel"></i><small>Settings</small></a> 
+              <router-link :to="{path: '/profile'}"><i class="ti-user"></i><small>Profile</small></router-link> 
+              <a href="#"><i class="ti-power-off"></i><small>Logout</small></a> 
+            </div>
+          </div> 
+          <img class="bg-user" src="" alt="User Image"> 
+        </div>
+        <ul class="sidebar-menu">
+          <li class="header">Admin Tools</li>
+          <li class="treeview">
+            <a href="#"> <i class="ti-desktop"></i> 
+              <span>Dashboard</span> 
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span> 
+            </a>
+            <ul class="treeview-menu">
+              <li>
+                <router-link to="/dashboard">Dashboard 1</router-link>
+              </li>
+              <li>
+                <router-link to="/dashboard-second">Dashboard 2</router-link>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <router-link to="/calendar"> <i class="ti-calendar"></i> <span>Calendar Apps</span> </router-link>
+          </li>
+          <li class="header">PHOTO tools</li>
+          <li>
+            <router-link to="/contracts"> <i class="ti-email"></i> <span>Contracts</span> </router-link>
+          </li>
+          <li>
+            <router-link to="/todo"> <i class="ti-write"></i> <span>ToDo Tasks</span> </router-link>
+          </li>
+          <li class="treeview">
+              <a href="#"> <i class="ti-shopping-cart-full"></i> <span>Your Salary</span> <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
-            </span> </a>
-                        <ul class="treeview-menu">
-                            <li>
-                                <router-link to="/dashboard">
-                                    <avatar username="Dashaboard One" :size='20' color="#fff"></avatar>Dashboard 1</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/dashboard-second">
-                                    <avatar username="Dashaboard Two" :size='20' color="#fff"></avatar>Dashboard 2</router-link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <router-link to="/calendar"> <i class="ti-calendar"></i> <span>Calendar Apps</span> </router-link>
-                    </li>
-                    <li class="header">PHOTO tools</li>
-                    <li>
-                      <router-link to="/contracts"> <i class="ti-email"></i> <span>Contracts</span> </router-link>
-                    </li>
-                    <li>
-                      <router-link to="/todo"> <i class="ti-write"></i> <span>ToDo Tasks</span> </router-link>
-                    </li>
-                     <li class="treeview">
-                        <a href="#"> <i class="ti-shopping-cart-full"></i> <span>Salary</span> <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                        </span> </a>
-                        <ul class="treeview-menu">
-                            <li>
-                                <router-link to="/shop-home">
-                                    <avatar username="hop Home Page" :size='20' color="#fff"></avatar> Shop Home </router-link>
-                            </li>
-                            <li>
-                                <router-link to="/shop-item">
-                                    <avatar username="Shop Item" :size='20' color="#fff"></avatar> Shop Item</router-link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                      <a href="#"> <i class="ti-paint-roller"></i> <span>CRUD</span> <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                      </span> </a>
-                      <ul class="treeview-menu">
-                        <li>
-                          <router-link to="/packages">
-                          <avatar username="Light" :size='20' color="#fff"></avatar>Packages</router-link>
-                        </li>
-                        <li>
-                          <router-link to="/clothes">
-                          <avatar username="Gradient" :size='20' color="#fff"></avatar>Clothes</router-link>
-                        </li>
-                        <li>
-                          <router-link to="/employees">
-                          <avatar username="Dark" :size='20' color="#fff"></avatar>Employees</router-link>
-                        </li>
-                        <li>
-                          <router-link to="/devices">
-                          <avatar username="Light" :size='20' color="#fff"></avatar>Devices</router-link>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="header">PAGES</li>
-                    <li class="treeview">
-                        <a href="#"> <i class="ti-layout-accordion-list"></i> <span>Blog</span> <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span> </a>
-                        <ul class="treeview-menu">
-                            <li>
-                                <router-link to="/blog-list">
-                                    <avatar username="Blog List" :size='20' color="#fff"></avatar> Blog List </router-link>
-                            </li>
-                            <li>
-                                <router-link to="/blog-mansory">
-                                    <avatar username="Blog Mansory" :size='20' color="#fff"></avatar> Blog Mansory </router-link>
-                            </li>
-                            <li>
-                                <router-link to="/blog-details">
-                                    <avatar username="Blog Details" :size='20' color="#fff"></avatar> Blog Details </router-link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#"> <i class="ti-shopping-cart-full"></i> <span>E Commerce</span> <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span> </a>
-                        <ul class="treeview-menu">
-                            <li>
-                                <router-link to="/shop-home">
-                                    <avatar username="hop Home Page" :size='20' color="#fff"></avatar> Shop Home </router-link>
-                            </li>
-                            <li>
-                                <router-link to="/shop-item">
-                                    <avatar username="Shop Item" :size='20' color="#fff"></avatar> Shop Item</router-link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#"> <i class="ti-layout-media-overlay"></i> <span>Common Page</span> <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span> </a>
-                        <ul class="treeview-menu">
-                            <li>
-                                <router-link to="/invoice">
-                                    <avatar username="Invoice" :size='20' color="#fff"></avatar> Invoice</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/profile">
-                                    <avatar username="Profile" :size='20' color="#fff"></avatar> Profile</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/login">
-                                    <avatar username="Login" :size='20' color="#fff"></avatar> Login</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/404">
-                                    <avatar username="404" :size='20' color="#fff"></avatar> 404 Error</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/500">
-                                    <avatar username="500" :size='20' color="#fff"></avatar> 500 Error</router-link>
-                            </li>
-                            <li class="active">
-                                <router-link to="/blank-page">
-                                    <avatar username="Blank Page" :size='20' color="#fff"></avatar> Blank Page</router-link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="header">GENERALS</li>
-                    <li class="treeview">
-                        <a href="#"> <i class="ti-write"></i> <span>Forms</span> <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-           </span> </a>
-                        <ul class="treeview-menu">
-                            <li>
-                                <router-link to="/form/radio">
-                                    <avatar username="Radio" :size='20' color="#fff"></avatar> Radio</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/form/checkbox">
-                                    <avatar username="Check Box" :size='20' color="#fff"></avatar> Checkbox</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/form/input">
-                                    <avatar username="Input" :size='20' color="#fff"></avatar> Input</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/form/select">
-                                    <avatar username="Select" :size='20' color="#fff"></avatar> Select</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/form/cascader">
-                                    <avatar username="Cascader" :size='20' color="#fff"></avatar>Cascader</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/form/switch">
-                                    <avatar username="Switch" :size='20' color="#fff"></avatar>Switch</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/form/Slider">
-                                    <avatar username="Slider" :size='20' color="#fff"></avatar>Slider</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/form/timepicker">
-                                    <avatar username="Time Picker" :size='20' color="#fff"></avatar>Time Picker</router-link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#"> <i class="ti-bar-chart"></i> <span>Charts</span> <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span> </a>
-                        <ul class="treeview-menu">
-                        
-                            <li>
-                                <router-link to="/chart/chartjs">
-                                    <avatar username="Chart Line" :size='20' color="#fff"></avatar>Chart Line</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/chart-bar">
-                                    <avatar username="Chart Bar" :size='20' color="#fff"></avatar>Chart Bar</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/chart-pie">
-                                    <avatar username="Chart Pie" :size='20' color="#fff"></avatar>Chart Pie</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/chart/vuebar">
-                                    <avatar username="Radio" :size='20' color="#fff"></avatar>Vue Bar</router-link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#"> <i class="ti-folder"></i> <span>UI Elements</span> <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span> </a>
-                        <ul class="treeview-menu">
-                            <li>
-                                <router-link to="/ui/ui-editor">
-                                    <avatar username="Editor" :size='20' color="#fff"></avatar> Editor</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/ui/ui-upload">
-                                    <avatar username="Upload" :size='20' color="#fff"></avatar> Upload</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/UI/general">
-                                    <avatar username="General" :size='20' color="#fff"></avatar> General</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/UI/icons">
-                                    <avatar username="Icons" :size='20' color="#fff"></avatar> Icons</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/UI/buttons">
-                                    <avatar username="Buttons" :size='20' color="#fff"></avatar> Buttons</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/UI/timeline">
-                                    <avatar username="Timeline" :size='20' color="#fff"></avatar> Timeline</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/UI/modals">
-                                    <avatar username="Modals" :size='20' color="#fff"></avatar> Modals</router-link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#"> <i class="ti-layout"></i> <span>Tables</span> <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span> </a>
-                        <ul class="treeview-menu">
-                            <li>
-                                <router-link to="/simple-table">
-                                    <avatar username="Simple Table" :size='20' color="#fff"></avatar>Simple Tables</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/select-table">
-                                    <avatar username="Select Table" :size='20' color="#fff"></avatar>Select Tables</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/expandable-table">
-                                    <avatar username="Expandable Table" :size='20' color="#fff"></avatar>Expandable Tables</router-link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#"> <i class="ti-location-pin"></i> <span>Maps</span> <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span> </a>
-                        <ul class="treeview-menu">
-                            <li>
-                                <router-link to="/gmap">
-                                    <avatar username="GMaps API" :size='20' color="#fff"></avatar> GMaps API</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/open-layer">
-                                    <avatar username="O P" :size='20' color="#fff"></avatar>Open Layer</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/chart/chart-map">
-                                    <avatar username="Maps Vector" :size='20' color="#fff"></avatar>Maps Vector</router-link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="header palette-Cyan-400 bg">DEVIN VUE 1.2</li>
-                    <li> <a href="http://ndesaintheme.com/devin/doc"><span>Documentation</span>
+              </span> </a>
+              <ul class="treeview-menu">
+                <li>
+                  <router-link to="/shop-home">Income</router-link>
+                </li>
+                <li>
+                  <router-link to="/shop-item">Dept</router-link>
+                </li>
+              </ul>
+            </li>
+            <li class="header">Products Tool</li>
+            <li class="treeview" v-if="types.length > 0" v-for="(type,index) of this.types" :key="index">
+              <router-link :to="{name: 'ProductsList', params: {product: type._id} }">
+                {{type.name}}
+              </router-link>
+            </li>
+            <li class="header" v-if="$store.state.role == 0" >Team Tool</li>
+            <li class="treeview">
+                <a href="#"> 
+                  <i class="ti-write"></i> 
+                  <span>Human Resource</span>
                   <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span> 
+                </a>
+                <ul class="treeview-menu">
+                  <li>
+                    <router-link to="/department">Department</router-link>
+                  </li>
+                  <li>
+                    <router-link to="/employees">Employee</router-link>
+                  </li>
+                </ul>
+            </li>
+            <li class="treeview">
+              <a href="#"> <i class="ti-bar-chart"></i> <span>Bussiness Analystics</span> <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+                </span> 
+              </a>
+              <ul class="treeview-menu">
+                  <li>
+                    <router-link to="/chart/chartjs">
+                        Team Salary</router-link>
+                  </li>
+                  <li>
+                    <router-link to="/chart-bar">
+                        Team Income</router-link>
+                  </li>
+                  <li>
+                    <router-link to="/chart-pie">
+                        Chart Pie</router-link>
+                  </li>
+              </ul>
+            </li>
+            <li>
+              <router-link to="/todo"> <i class="ti-write"></i> <span>Product Management</span> </router-link>
+            </li>
+            <li class="header palette-Cyan-400 bg">DEVIN VUE 1.2</li>
+            <li> 
+              <a href="http://ndesaintheme.com/devin/doc"><span>Documentation</span>
+                <span class="pull-right-container">
                   <i class="fa ti-agenda pull-right version"></i>
                 </span>
-                    </a></li>
-                    <li> <a href="#"><span>About</span>
-                  <span class="pull-right-container">
+              </a>
+            </li>
+            <li> 
+              <a href="#"><span>About</span>
+                <span class="pull-right-container">
                   <i class="fa ti-info-alt pull-right version"></i>
                 </span>
-                    </a></li>
-                    <li> <a href="#"><span>Feedback</span>
-                  <span class="pull-right-container">
+              </a>
+            </li>
+            <li> 
+              <a href="#"><span>Feedback</span>
+                <span class="pull-right-container">
                   <i class="version fa ti-package pull-right"></i>
                 </span>
-                    </a></li>
-                    <li>
-                        <br>
-                        <br>
-                        <br>
-                    </li>
-                </ul>
-            </section>
-            <!-- /.sidebar -->
-        </div>
-    </aside>
+              </a>
+            </li>
+            <li>
+              <br>
+              <br>
+              <br>
+            </li>
+          </ul>
+      </section>
+    </div>
+  </aside>
 </template>
 <script>
-import Avatar from 'vue-avatar'
 export default {
   name: 'DashboardSidebar',
-  mounted: function () {
+  data () {
+    return {
+      types: [],
+      me: null
+    }
+  },
+  mounted () {
     $(document).ready(function ($) {
       $('.main-sidebar > div').slimScroll({
         width: '230px',
@@ -318,8 +154,20 @@ export default {
       })
     })
   },
-  components: {
-    Avatar
+  created () {
+    this.$http.get('api/productTypes').then(res => {
+      this.types = res.body
+    })
+    this.$http.get('api/users/me').then(res => {
+      this.me = res.body
+    })
   }
 }
 </script>
+<style scoped>
+.img-circle {
+    height: 100px !important;
+    width: 100px !important;
+    object-fit: cover;
+}
+</style>

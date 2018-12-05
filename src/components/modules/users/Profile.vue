@@ -14,10 +14,9 @@
     <section class="content">
         <div class="box">
             <div class="box-body" style="min-height:400px;">
-        
                 <div class="movie-card">
                     <div class="container-movie">
-                        <a href="#"><img src="http://api.randomuser.me/portraits/men/32.jpg" alt="cover" class="cover-profile" /></a>
+                        <a href="#"><img :src="user.avatar | takeImage" alt="cover" class="cover-profile" /></a>
                         <div class="hero">
                             <div class="details-profile">
                                 <div class="title1">{{user.name}} <span>Web Designer</span></div>
@@ -113,3 +112,11 @@
     }
   }
 </script>
+<style scoped>
+.cover-profile {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+</style>

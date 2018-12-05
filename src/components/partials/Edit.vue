@@ -1,7 +1,7 @@
 <template>
   <div>
     <section class="content-header">
-      <router-link :to="$route.path.replace('/new','')"><button type="button" style="float: right" class="el-button el-button--primary"><span>Back to List</span></button></router-link>
+      <router-link :to="{name: `${componentName}List`, params: {product: $route.params.product}}"><button type="button" style="float: right" class="el-button el-button--primary"><span>Back to List</span></button></router-link>
       <ol class="breadcrumb">
         <li><router-link to="/"> <i class="ti-home"></i></router-link></li>
         <li><a href="#">Table</a></li>
@@ -19,7 +19,7 @@
 <script>
 export default {
   name: 'New',
-  props: ['titleList', 'urlList'],
+  props: ['titleList', 'urlList', 'componentName'],
   data: function () {
     return {
       tableData: [{
