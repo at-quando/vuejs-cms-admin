@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <list v-if="data" :attrTable="attrs" :titleList="'package'" :tableData="data" :urlList="'/package'"/>
+    <list v-if="data" :attrTable="attrs" :titleList="'city'" :tableData="data" :urlList="'/cities'"/>
   </div>
 </template>
 <script>
@@ -10,13 +10,16 @@ export default {
   name: 'PackageList',
   data () {
     return {
-      attrs: ['name', 'price', 'price_first', 'offer', 'types', 'aspect', 'level', 'duration'],
+      attrs: ['name', 'colleges'],
       data: []
     }
   },
   created () {
-    this.$http.get('api/packages').then(res => {
+    this.$http.get('api/cities').then(res => {
       this.data = res.body
+      this.data.forEach((x) => {
+        x.colleges = x.colleges.map(x => `${x.name} - ${x.key}`)
+      })
     })
   },
   components: {

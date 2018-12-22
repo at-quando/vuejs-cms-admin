@@ -101,6 +101,7 @@ export default {
         }
       })
         .then(response => {
+          console.log(response)
           this.imageUrl = this.$options.filters.takeImage(response.body.avatar)
         })
     },

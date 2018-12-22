@@ -36,6 +36,12 @@
           <li>
             <router-link to="/calendar"> <i class="ti-calendar"></i> <span>Calendar Apps</span> </router-link>
           </li>
+          <li>
+            <router-link to="/packages"> <i class="ti-calendar"></i> <span>Packages</span> </router-link>
+          </li>
+          <li>
+            <router-link to="/cities"> <i class="ti-calendar"></i> <span>Cities & Colleges</span> </router-link>
+          </li>
           <li class="header">PHOTO tools</li>
           <li>
             <router-link to="/contracts"> <i class="ti-email"></i> <span>Contracts</span> </router-link>
@@ -164,10 +170,10 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
 .img-circle {
-    height: 100px !important;
-    width: 100px !important;
-    object-fit: cover;
+  height: 100px !important;
+  width: 100px !important;
+  object-fit: cover;
 }
 </style>

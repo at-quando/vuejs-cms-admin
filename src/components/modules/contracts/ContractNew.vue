@@ -23,7 +23,21 @@
         <el-row>
           <el-col :span="5">
             <el-form-item label="City">
-              <el-input v-model="form.city"></el-input>
+              <el-select
+                v-model="form.city"
+                style="width: 100%;"
+                filterable
+                remote
+                placeholder="Please enter city"
+                :remote-method="remoteMethod"
+                :loading="loading">
+                <el-option
+                  v-for="item in cities"
+                  :key="item._id"
+                  :label="item.name"
+                  :value="item.name">
+                </el-option>
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="5">
@@ -33,9 +47,9 @@
           </el-col>
           <el-col :span="8">
             <el-form-item label="Client">
-              <el-select
-                v-model="form.client"
-                multiple
+              <el-select v-if="form.city != ''"
+                v-model="client"
+                value-key="name"
                 style="width: 100%;"
                 filterable
                 remote
@@ -43,10 +57,10 @@
                 :remote-method="remoteMethod"
                 :loading="loading">
                 <el-option
-                  v-for="item in options4"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
+                  v-for="item in cities.filter(x => x.name == form.city)[0].colleges"
+                  :key="item.key"
+                  :label="item.name"
+                  :value="item">
                 </el-option>
               </el-select>
             </el-form-item>
@@ -60,7 +74,7 @@
         <el-row>
           <el-col :span="5">
             <el-form-item label="Auto Code">
-              <span>{{form.code}}</span>
+              <span>{{form.code = client.key + form.group + form.label}}</span>
             </el-form-item>
           </el-col>
           <el-col :span="5">
@@ -123,6 +137,7 @@ export default {
       packages: null,
       takenDate: null,
       address: null,
+      client: {},
       form: {
         representative: '',
         phone1: '',
@@ -139,9 +154,11 @@ export default {
         access_token: '',
         taken_dates: [],
         packages: [],
+        products: [],
         costs: [],
         total: ''
       },
+      cities: [],
       options4: [],
       list: [],
       loading: false,
@@ -169,6 +186,11 @@ export default {
   mounted () {
     this.list = this.states.map(item => {
       return { value: item, label: item }
+    })
+  },
+  created () {
+    this.$http.get(`api/cities`).then(res => {
+      this.cities = res.body
     })
   },
   methods: {
@@ -205,6 +227,11 @@ export default {
       } else {
         this.options4 = []
       }
+    }
+  },
+  watch: {
+    client: (val) => {
+      this.form.client = client.name
     }
   }
 }

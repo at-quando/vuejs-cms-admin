@@ -63,6 +63,10 @@ import PackagesList from './components/modules/crud/packages/PackagesList.vue'
 import PackagesDetails from './components/modules/crud/packages/PackagesDetails.vue'
 import PackagesNew from './components/modules/crud/packages/PackagesNew.vue'
 
+import CitiesList from './components/modules/crud/cities/CitiesList.vue'
+import CitiesDetails from './components/modules/crud/cities/CitiesDetails.vue'
+import CitiesNew from './components/modules/crud/cities/CitiesNew.vue'
+
 import Department from './components/modules/human-resource/department/Department.vue'
 import DepartmentDetails from './components/modules/human-resource/department/DepartmentDetails.vue'
 
@@ -136,6 +140,18 @@ const routes = [
         path: '/packages/:id',
         name: 'package',
         component: PackagesDetails
+      }, {
+        path: '/cities',
+        name: 'cityList',
+        component: CitiesList
+      }, {
+        path: '/cities/new',
+        name: 'cityNew',
+        component: CitiesNew
+      }, {
+        path: '/cities/:id',
+        name: 'city',
+        component: CitiesDetails
       }, {
         path: '/employees',
         name: 'EmployeesList',
